@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>XII Fisher — Tangkap Ikan</title>
+  <link rel="icon" type="image/png" href="assets/img/logo.png" />
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <link rel="stylesheet" href="assets/css/game.css">
+</head>
+<body>
+   <div class="ocean-bg"></div>
+ <div class="light-rays"></div>
+ <div class="coral-bg"></div>
+ <div class="bubbles" id="bubbles"></div>
+ <div class="currents-layer" id="currentsLayer"></div>
+
+  <header class="topbar">
+    <div class="brand-mini">
+      <img 
+        src="assets/img/fisher.png"
+        alt="Fisher" 
+        class="brand-logo"
+        onmouseover="this.src='assets/img/fisher2.gif'" 
+        onmouseout="this.src='assets/img/fisher.png'"
+        onclick="location.href='home.html'"
+      >
+    </div>
+
+    <div style="display: flex; gap: 10px; align-items: center; margin-left: auto;">
+        <button id="tutorialBtn" class="nav-btn blue" style="padding: 8px 12px; font-size: 20px; line-height: 1;" aria-label="Cara Main">
+  ❔
+</button>
+        <button id="settingBtn" class="nav-btn blue" style="padding: 8px 12px; font-size: 20px; line-height: 1;" aria-label="Pengaturan">
+          ⚙️
+        </button>
+
+        <button id="menuToggle" class="menu-toggle" aria-label="Buka menu">☰</button>
+    </div>
+
+    <nav class="nav-buttons" style="margin-left: 10px;">
+     <button class="nav-btn" onclick="location.href='home.html'">Beranda</button>
+  <button class="nav-btn active" onclick="location.href='game.html'">Game</button>
+  
+  <button class="nav-btn" onclick="location.href='kenangan.html'">Kenangan</button>
+    </nav>
+  </header>
+
+  <div class="float-ui">
+      <button id="bagBtn" class="bag-btn" aria-label="Inventory">
+        🎒 <span id="bagCount">0</span>
+      </button>
+    </div>
+    
+  <nav id="mobileMenu" class="mobile-menu">
+     <button class="nav-btn" onclick="location.href='home.html'">Beranda</button>
+  <button class="nav-btn active" onclick="location.href='game.html'">Game</button>
+  
+  <button class="nav-btn" onclick="location.href='kenangan.html'">Kenangan</button>
+  </nav>
+
+  <main class="play-area" id="playArea" aria-live="polite">
+    </main>
+
+  <aside id="inventoryPanel" class="inventory-panel" aria-hidden="true">
+    <div class="inv-header">
+      <h3>Inventory</h3>
+      <button id="closeInv" class="ghost">✕</button>
+    </div>
+
+    <div class="inv-grid" id="invGrid" role="grid" aria-label="Inventory slots">
+      </div>
+
+    <div class="inv-actions">
+      <button id="releaseAllBtn" class="danger" hidden>Lepaskan Semua</button>
+    </div>
+  </aside>
+
+  <div id="caughtOverlay" class="overlay" aria-hidden="true">
+    <div class="caught-modal">
+      <div class="caught-content">
+        <h3 style="color: white">Selamat, Anda mendapatkan</h3>
+        <div class="caught-type" id="caughtType"></div>
+        <div class="caught-skin" id="caughtSkin">
+            <img class="fish-rays" src="assets/img/rays.png" alt="">
+        </div>
+        <div class="caught-name" id="caughtName"></div>
+
+        <div class="caught-actions">
+          <button id="takeBtn" class="primary">Ambil</button>
+          <button id="readBtn" class="danger">Baca Surat</button>
+        </div>
+      </div>
+      <button class="modal-close" id="closeCaught">✕</button>
+    </div>
+  </div>
+
+  <div id="letterOverlay" class="overlay" aria-hidden="true">
+    <div class="modal glass letter-modal">
+      <div class="letter-content">
+        <div class="letter-skin" id="letterSkin"></div>
+        <div class="letter-meta">
+          <div class="letter-type" id="letterType"></div>
+          <div class="letter-name" id="letterFishName"></div>
+          <div class="letter-student" id="letterStudent"></div>
+        </div>
+
+        <div class="letter-msg" id="letterMsg"></div>
+
+        <div class="letter-actions">
+          <button id="releaseBtn" class="danger">Lepaskan</button>
+          <button id="closeLetter" class="secondary">Tutup</button>
+        </div>
+      </div>
+      <button class="modal-close" id="closeLetterX">✕</button>
+    </div>
+  </div>
+  <div id="bottleOverlay" class="overlay" aria-hidden="true">
+  <div class="modal caught-modal">
+    <div class="caught-content">
+      <div style="font-size: 60px; margin-bottom: 10px; animation: floatIcon 3s ease-in-out infinite;">
+        📜
+      </div>
+      
+      <h3 style="color: #ffeeb3; margin-bottom: 10px;">Pesan Misterius</h3>
+      
+      <p style="line-height: 1.6; font-size: 0.95rem; margin-bottom: 20px;">
+        "Selamat! Kamu telah mengumpulkan semua teman sekelas.<br><br>
+        Sekarang, saatnya membuka lembaran kisah kami di halaman <b>Kenangan</b>. Ada sesuatu yang spesial menunggumu di sana."
+      </p>
+
+      <div class="caught-actions">
+        <button onclick="location.href='kenangan.html'" class="primary" style="width: 100%; margin-bottom: 8px;">
+          Buka Halaman Kenangan ➜
+        </button>
+        
+        <button id="closeBottleBtn" class="secondary" style="width: 100%;">
+          Nanti Saja
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="tutorialOverlay" class="overlay" aria-hidden="true">
+  <div class="modal setting-modal">
+    <div class="inv-header">
+      <h3>Cara Bermain</h3>
+      <button id="closeTutorial" class="ghost">✕</button>
+    </div>
+    
+    <div class="setting-content" style="text-align: center;">
+      
+      <div style="margin-bottom: 20px;">
+        <div style="font-size: 40px; margin-bottom: 5px;">🐟</div>
+        <h4 style="color: #ffeeb3; margin-bottom: 5px;">Tunggu & Pantau</h4>
+        <p style="font-size: 0.9rem; opacity: 0.9;">Tunggu ikan berenang lewat di layar.</p>
+      </div>
+      
+      <div style="margin-bottom: 20px;">
+        <div style="font-size: 40px; margin-bottom: 5px;">👆</div>
+        <h4 style="color: #ffeeb3; margin-bottom: 5px;">Tap untuk Menangkap</h4>
+        <p style="font-size: 0.9rem; opacity: 0.9;">Klik atau tap langsung pada ikan untuk menangkapnya.</p>
+      </div>
+      
+      <div style="margin-bottom: 20px;">
+        <div style="font-size: 40px; margin-bottom: 5px;">🎒</div>
+        <h4 style="color: #ffeeb3; margin-bottom: 5px;">Cek Koleksi</h4>
+        <p style="font-size: 0.9rem; opacity: 0.9;">Buka Tas untuk melihat ikan yang didapat dan membaca surat rahasia.</p>
+      </div>
+      
+    </div>
+    
+    <div class="caught-actions">
+      <button id="closeTutorialBtn" class="primary" style="width: 100%;">Paham!</button>
+    </div>
+  </div>
+</div>
+  <div id="settingOverlay" class="overlay" aria-hidden="true">
+    <div class="modal setting-modal">
+      <div class="inv-header">
+        <h3>Pengaturan</h3>
+        <button id="closeSetting" class="ghost">✕</button>
+      </div>
+      
+      <div class="setting-content">
+        <div class="setting-group">
+          <h4>🔊 Audio</h4>
+          
+          <div class="control-row">
+  <label>Musik (Lagu)</label>
+  <input type="range" id="volMusic" min="0" max="1" step="0.1" value="0.3">
+</div>
+
+<div class="control-row">
+  <label>Ambience (Laut)</label>
+  <input type="range" id="volAmbience" min="0" max="1" step="0.1" value="0.5">
+</div>
+<div class="control-row">
+  <label>Efek Suara (SFX)</label>
+  <input type="range" id="volSfx" min="0" max="1" step="0.1" value="0.8">
+</div>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.2); margin: 15px 0;">
+
+        <div class="setting-group">
+          <h4>🎨 Grafis / Video</h4>
+          
+          <div class="control-row">
+            <label>Show Rays (Cahaya)</label>
+            <label class="switch">
+              <input type="checkbox" id="showRays" checked>
+              <span class="slider-toggle"></span>
+            </label>
+          </div>
+
+          <div class="control-row">
+            <label>Show Bubble (Gelembung)</label>
+            <label class="switch">
+              <input type="checkbox" id="showBubbles" checked>
+              <span class="slider-toggle"></span>
+            </label>
+          </div>
+
+          <div class="control-row">
+            <label>Show Wave (Arus BG)</label>
+            <label class="switch">
+              <input type="checkbox" id="showWaves" checked>
+              <span class="slider-toggle"></span>
+            </label>
+          </div>
+
+          <div class="control-row">
+            <label>Show Trail (Jejak Ikan)</label>
+            <label class="switch">
+              <input type="checkbox" id="showTrails" checked>
+              <span class="slider-toggle"></span>
+            </label>
+          </div>
+          <div class="control-row">
+  <label>✨ Bloom Effect (Berat)</label>
+  <label class="switch">
+    <input type="checkbox" id="showBloom">
+    <span class="slider-toggle"></span>
+  </label>
+</div>
+
+        </div>
+      </div>
+      
+      <div class="caught-actions">
+        <button id="saveSettingBtn" class="primary" style="width: 100%;">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="gameTooltip" class="game-tooltip"></div>
+
+  <script src="assets/js/fishData.js"></script>
+  <script src="assets/js/game.js"></script>
+</body>
+</html>

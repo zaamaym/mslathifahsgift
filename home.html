@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome — Bu Lathifah</title>
+  <link rel="icon" type="image/png" href="assets/img/logo.png" />
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <link rel="stylesheet" href="assets/css/home.css">
+</head>
+<body>
+
+  <div class="ocean-bg"></div>
+  <div class="coral-bg"></div>
+  <div class="light-rays"></div>
+  <div class="bubbles" id="bubbles"></div>
+
+  <header class="topbar">
+    <div class="brand-mini">
+      <img 
+        src="assets/img/fisher.png"
+        alt="Fisher" 
+        class="brand-logo"
+        onmouseover="this.src='assets/img/fisher2.gif'" 
+        onmouseout="this.src='assets/img/fisher.png'"
+        onclick="location.href='home.html'"
+      >
+    </div>
+
+    <button id="menuToggle" class="menu-toggle" aria-label="Buka menu">☰</button>
+
+    <nav class="nav-buttons">
+        <button class="nav-btn active" onclick="location.href='home.html'">Beranda</button>
+  <button class="nav-btn" onclick="location.href='game.html'">Game</button>
+  
+  <button class="nav-btn" onclick="location.href='kenangan.html'">Kenangan</button>
+    </nav>
+  </header>
+
+  <nav id="mobileMenu" class="mobile-menu">
+  <button class="nav-btn active" onclick="location.href='home.html'">Beranda</button>
+  <button class="nav-btn" onclick="location.href='game.html'">Game</button>
+  
+  <button class="nav-btn" onclick="location.href='kenangan.html'">Kenangan</button>
+  </nav>
+
+  <div class="float-wrapper">
+    <div class="panel">
+      <div class="badge">✨ Special Gift ✨</div>
+      
+      <h1 class="hero-title">
+        Happy Birthday &<br>Teacher's Day! 🎂
+      </h1>
+      
+      <h2 class="teacher-name">Ibu Lathifah 💗</h2>
+      
+      <p class="message">
+        Terima kasih bu Lathifah atas bimbingannya dalam perjalanan di kelas 12 kami.🫶🏻<br><br>
+        Kami punya ikan bersurat yang kami lepaskan ke kolam dan biarkan mereka membawa surat itu kepada ibu. Siap <b>"memancing"</b> ikan bersama kami ya buu😋✊🏻<br>
+        <i>Fisher! Mancing Mania Oye 🎣</i>
+      </p>
+
+      <div class="action-buttons">
+        <button id="startBtn" class="go">Yihaa 🚀</button>
+        <button id="partyBtn" class="btn-icon">🎉</button>
+      </div>
+
+      <div class="footer-sign">
+        With Love, <b>XII Fisher 🐟</b>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/home.js"></script>
+</body>
+</html>
