@@ -1,1 +1,429 @@
+/* GANTI ISI assets/css/home.css DENGAN INI */
 
+/* --- RESET & VIEWPORT LOCK --- */
+* { margin: 0; padding: 0; box-sizing: border-box;   /* 1. ANTI SELECT (Desktop) */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  
+  /* 2. KHUSUS MOBILE (Wajib tambah ini) */
+  /* Menghilangkan warna biru/abu saat tombol/layar di-tap */
+  -webkit-tap-highlight-color: transparent; 
+  
+  /* Menghilangkan menu popup (Copy/Share/Look Up) saat layar ditekan lama di iPhone (iOS) */
+  -webkit-touch-callout: none; 
+
+  /* Mencegah gambar di-drag */
+  -webkit-user-drag: none;
+}
+
+/* PENTING: Tetap biarkan Input & Slider bisa disentuh */
+input, textarea, select, .slider-toggle {
+  -webkit-user-select: auto !important;
+  user-select: auto !important;
+  /* Kembalikan highlight tap khusus untuk elemen interaktif kalau mau, 
+     atau biarkan transparent biar estetik */
+  -webkit-tap-highlight-color: transparent; }
+
+:root {
+  --card: #fff;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Tambahkan HTML di sini untuk memastikan root terkunci */
+html, body {
+  width: 100%;
+  height: 100%; /* Pastikan mengisi layar penuh */
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* KUNCI UTAMA: Memotong apapun yang keluar garis */
+  position: fixed; /* Mengunci layar agar tidak bisa digeser/ditarik (bounciness) di HP */
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  /* Hapus width/height 100dvh di sini karena sudah di handle di atas */
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  /* Background */
+  background: radial-gradient(circle at 50% 20%, #6fd3ff 0%, #0d5c97 80%);
+}
+
+
+/* --- ASSETS BACKGROUND (BUBBLES, RAYS, ETC) --- */
+.ocean-bg, .light-rays, .bubbles, .rays {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+#bubbles { z-index: 1; overflow: hidden; }
+
+.bubble {
+  position: absolute;
+  bottom: -50px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  animation: rise linear infinite;
+}
+
+@keyframes rise {
+  to { transform: translateY(-120vh); opacity: 0; }
+}
+
+/* Light Rays Animation */
+.light-rays {
+  background: url("../img/light_rays.png") center top no-repeat;
+  background-size: cover;
+  opacity: 0.4; /* Naikkan sedikit opacity biar lebih kelihatan sinarnya */
+  mix-blend-mode: overlay;
+  z-index: 2;
+  
+  /* Ubah durasi jadi 12s biar gerakannya pelan tapi megah */
+  animation: sway 12s ease-in-out infinite alternate;
+  
+  /* PENTING: Ubah origin ke atas tengah, biar zoom-nya dari atas (sumber cahaya) */
+  transform-origin: top center;
+}
+
+/* Update Keyframes SWAY */
+@keyframes sway {
+  from {
+    /* translateY(-250px) -> Menarik posisi ke atas sejauh 250px 
+       scale(2.5) -> Tetap besar 
+    */
+    transform: translateX(-15%) translateY(-250px) scale(1.1) rotate(-8deg);
+  }
+  
+  to {
+    transform: translateX(15%) translateY(-250px) scale(1.1) rotate(8deg);
+  }
+}
+
+/* --- MAIN PANEL --- */
+/* --- MAIN PANEL WRAPPER & ANIMATION --- */
+
+/* 1. WRAPPER: Mengatur Ukuran & Animasi Ngambang */
+.float-wrapper {
+  position: relative;
+  width: min(90%, 420px); /* Ukuran pindah ke sini */
+  z-index: 10;
+  left:10px;
+  /* Animasi Ngambang (Underwater Effect) */
+  /* Durasi 4 detik, gerak halus, selamanya */
+  animation: floating 4s ease-in-out infinite;
+}
+
+/* 2. PANEL: Mengatur Tampilan Kotak Putih & Pop In */
+.panel {
+  width: 100%; /* Mengikuti lebar wrapper */
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 40px 30px;
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  text-align: center;
+  color: white;
+  
+  /* Animasi Muncul (Cuma sekali pas reload) */
+  animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* --- KEYFRAMES --- */
+
+/* Animasi Muncul (Zoom dari 0 ke 1) */
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Animasi Ngambang (Naik Turun + Miring Dikit biar natural) */
+/* Animasi Ngambang (Continuous Loop / Tanpa Jeda) */
+@keyframes floating {
+  0% {
+    /* Mulai dari ATAS (Puncak) */
+    transform: translateY(-10px) rotate(1deg);
+  }
+  50% {
+    /* Turun ke BAWAH (Lembah) */
+    transform: translateY(10px) rotate(-1deg);
+  }
+  100% {
+    /* Kembali ke ATAS lagi */
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+
+
+.panel h1 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.panel .sub {
+  font-size: 1rem;
+  opacity: 0.9;
+  margin-bottom: 25px;
+}
+/* ---------------- BUTTONS ---------------- */
+
+/* ---------------- BUTTONS (PANEL) ---------------- */
+
+/* Container tombol agar rapi bersebelahan */
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;         /* Jarak antar tombol */
+  margin-top: 10px;
+  width: 100%;
+}
+
+/* Style Dasar untuk kedua tombol (biar kodingan rapi) */
+#yesBtn, #noBtn {
+  padding: 14px 32px;      /* Ukuran lebih besar & enak dipencet */
+  border-radius: 50px;     /* Bentuk kapsul (Pill shape) modern */
+  border: none;
+  font-size: 16px;
+  font-weight: 800;        /* Font tebal biar mantap */
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efek membal halus */
+  position: relative;      /* Penting untuk JS tombol kabur */
+  letter-spacing: 0.5px;
+}
+
+/* === Tombol YES (Sayang) === */
+/* Warna gradasi pink cerah + efek glowing */
+#yesBtn {
+  background: linear-gradient(135deg, #ff7eb3 0%, #ff758c 100%);
+  color: white;
+  box-shadow: 0 8px 20px rgba(255, 118, 136, 0.4); /* Bayangan pink */
+}
+
+/* Efek saat didekati mouse: Membesar sedikit & naik */
+#yesBtn:hover {
+  transform: scale(1.1) translateY(-3px);
+  box-shadow: 0 15px 30px rgba(255, 118, 136, 0.6);
+}
+
+/* Efek saat dipencet */
+#yesBtn:active {
+  transform: scale(0.95);
+}
+
+/* === Tombol NO (Tidak) === */
+/* Putih bersih, tapi tetap terlihat tombol */
+#noBtn {
+  background: #ffffff;
+  color: #555;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Efek hover (sebelum dia kabur wkwk) */
+#noBtn:hover {
+  background: #f8f8f8;
+  color: #333;
+  transform: scale(1.05);
+}
+
+/* --- TAMBAHAN SILUET CORAL --- */
+.coral-bg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 35vh; /* Mengisi 35% tinggi layar dari bawah */
+  /* Ganti nama file sesuai file png kamu */
+  background: url("../img/background.png") bottom center no-repeat;
+  background-size: cover; /* Agar lebar menyesuaikan layar */
+  z-index: 3; /* Di atas rays, tapi di bawah Panel utama */
+  pointer-events: none; /* Agar tidak menghalangi klik */
+  opacity: 0.8; /* Opsional: Mengatur kepekatan */
+}
+
+/* Responsif untuk HP agar coral tidak terlalu tinggi menutupi panel */
+@media (max-width: 768px) {
+  .coral-bg {
+    height: 25vh;
+    background-size: 150% auto; /* Zoom in sedikit di HP */
+  }
+}
+
+/* --- MEME PRANK OVERLAY --- */
+.meme-layer {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none; /* Biar gak ngehalangi klik */
+  z-index: 100000; /* Paling atas di dunia */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0; /* Default sembunyi */
+}
+
+.meme-layer img {
+  width: 80px;  /* Biar gak kegedean di HP */
+  height: 80px;
+  border-radius: 12px;
+  box-shadow: 0 0 50px rgba(0,0,0,0.5);
+}
+
+/* KELAS UNTUK TRIGGER ANIMASI */
+.meme-animate {
+  animation: jumpScare 0.8s ease-out forwards;
+}
+
+@keyframes jumpScare {
+  0% { 
+    opacity: 0; 
+    transform: scale(0.5); 
+  }
+  20% { 
+    opacity: 0.8; 
+    transform: scale(1.2); /* Efek BOOM meledak */
+  }
+  40% {
+    transform: scale(1.0); /* Normal */
+  }
+  80% {
+    opacity: 0.8;
+    transform: scale(1.0);
+  }
+  100% { 
+    opacity: 0; 
+    transform: scale(1.5); /* Ilang sambil zoom */
+  }
+}
+/* --- LOVE FLOW ANIMATION --- */
+/* Elemen hati yang akan dibuat oleh JS */
+.heart-flow {
+  position: fixed;
+  font-size: 28px; /* Ukuran emoji */
+  pointer-events: none; /* Agar tidak menghalangi apa-apa */
+  z-index: 999999; /* Paling depan */
+  
+  /* Variable default (nanti diubah JS secara acak) */
+  --tx: 0px;
+  --ty: -150px;
+  --rot: 0deg;
+
+  /* Jalankan animasi 'floatLove' selama 1.2 detik */
+  animation: floatLove 1.2s ease-out forwards;
+  will-change: transform, opacity;
+}
+
+/* Keyframes gerakan terbang ke atas */
+@keyframes floatLove {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.3) rotate(0deg);
+  }
+  20% {
+     opacity: 1;
+     transform: translate(-50%, -50%) scale(1.2) rotate(var(--rot));
+  }
+  100% {
+    opacity: 0;
+    /* Terbang ke arah yang ditentukan variabel --tx dan --ty */
+    transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(0.8) rotate(var(--rot));
+  }
+}
+
+/* --- TAMBAHAN STYLE PANEL "ALAY" --- */
+
+/* Badge Peringatan */
+.badge {
+  display: inline-block;
+  background: rgba(255, 99, 132, 0.2);
+  color: #ffb1c1;
+  border: 1px solid rgba(255, 99, 132, 0.5);
+  padding: 5px 15px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Judul Utama yang lebih Drama */
+.hero-title {
+  font-size: 1.7rem;
+  line-height: 1.3;
+  margin-bottom: 15px;
+
+  font-weight: 800;
+  text-shadow: 0 4px 15px rgba(255, 122, 122, 0.3);
+}
+
+/* Teks Pesan */
+.message {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 30px;
+}
+
+.message b {
+  color: #ffeeb3; /* Kuning soft */
+  font-weight: 700;
+}
+
+.message i {
+  color: #fc81c7; /* Pink pastel */
+  font-weight: 800;
+}
+
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 480px) {
+  .hero-title { font-size: 1.4rem; }
+  .message { font-size: 0.9rem; }
+  
+  /* Container Tombol */
+  .buttons {
+    flex-direction: column; /* Susun atas-bawah */
+    align-items: center;    /* PENTING: Ini jurus agar tombol pas di tengah horizontal */
+    width: 100%;            /* Pastikan container mengambil lebar penuh panel */
+    gap: 15px;
+    margin-top: 10px;
+  }
+  
+  /* Tombolnya */
+  #yesBtn, #noBtn {
+    /* UBAH DISINI UNTUK UKURAN LEBARNYA */
+    width: 60%; /* Coba 50% atau 60% biar lebih manis (jangan 80% kegedean) */
+    
+    /* Opsional: Biar tingginya gak gepeng banget di HP */
+    padding: 12px 0; 
+  }
+}
+/* =========================================
+   1. RESET & BASE STYLES
+   ========================================= */
+* { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+  
+  /* TAMBAHKAN INI (ANTI BLOCK/HIGHLIGHT) */
+  -webkit-user-select: none; /* Safari/Chrome */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* IE/Edge */
+  user-select: none;         /* Standar */
+  
+  /* Mencegah gambar di-drag */
+  -webkit-user-drag: none;
+}
+
+/* PENTING: Kembalikan fitur select khusus untuk INPUT (Setting) */
+/* Biar user tetap bisa geser slider atau ketik kalau ada input box */
+input, textarea, select {
+  -webkit-user-select: auto !important;
+  user-select: auto !important;
+}

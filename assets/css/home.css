@@ -1,0 +1,449 @@
+/* GANTI ISI assets/css/home.css DENGAN INI */
+
+/* --- RESET & VIEWPORT LOCK --- */
+* { margin: 0; padding: 0; box-sizing: border-box;   /* 1. ANTI SELECT (Desktop) */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  
+  /* 2. KHUSUS MOBILE (Wajib tambah ini) */
+  /* Menghilangkan warna biru/abu saat tombol/layar di-tap */
+  -webkit-tap-highlight-color: transparent; 
+  
+  /* Menghilangkan menu popup (Copy/Share/Look Up) saat layar ditekan lama di iPhone (iOS) */
+  -webkit-touch-callout: none; 
+
+  /* Mencegah gambar di-drag */
+  -webkit-user-drag: none;
+}
+
+/* PENTING: Tetap biarkan Input & Slider bisa disentuh */
+input, textarea, select, .slider-toggle {
+  -webkit-user-select: auto !important;
+  user-select: auto !important;
+  /* Kembalikan highlight tap khusus untuk elemen interaktif kalau mau, 
+     atau biarkan transparent biar estetik */
+  -webkit-tap-highlight-color: transparent;}
+
+:root {
+  --card: #fff;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Tambahkan HTML di sini untuk memastikan root terkunci */
+html, body {
+  width: 100%;
+  height: 100%; /* Pastikan mengisi layar penuh */
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* KUNCI UTAMA: Memotong apapun yang keluar garis */
+  position: fixed; /* Mengunci layar agar tidak bisa digeser/ditarik (bounciness) di HP */
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  /* Hapus width/height 100dvh di sini karena sudah di handle di atas */
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  /* Background */
+  background: radial-gradient(circle at 50% 20%, #6fd3ff 0%, #0d5c97 80%);
+}
+
+
+/* --- HEADER / TOPBAR (GLASSMORPHISM STYLE) --- */
+.topbar {
+  position: absolute;
+  top: 20px; /* Memberi jarak dari atas */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  /* Style Glassmorphism agar menyatu dengan tema air */
+  background: rgba(255, 255, 255, 0.85); 
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  
+  width: 90%; 
+  max-width: 1200px;
+  padding: 10px 24px;
+  border-radius: 50px; /* Full rounded biar lebih modern */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.brand-mini {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-logo {
+  height: 40px; 
+  width: auto;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.brand-logo:hover { transform: scale(1.05); }
+
+/* --- NAVIGASI DESKTOP --- */
+.nav-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.nav-btn {
+  padding: 10px 20px;
+  border-radius: 30px; /* Konsisten dengan bentuk tombol panel */
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  font-size: 14px;
+}
+
+/* 1. Style Dasar (Semua tombol default-nya transparan & teks biru) */
+.nav-btn {
+  padding: 10px 20px;
+  border-radius: 30px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  /* Default: Transparan, Teks Biru Tua */
+  background: transparent;
+  color: #0d5c97;
+  box-shadow: none;
+}
+
+/* 2. Style Hover (Hanya kalau TIDAK SEDANG AKTIF) */
+/* "not(.active)" artinya: kalau dia bukan tombol halaman ini, baru boleh berubah warna pas di-hover */
+.nav-btn:not(.active):hover {
+  background: rgba(13, 92, 151, 0.1); /* Biru muda transparan */
+  transform: translateY(-2px);
+}
+
+/* 3. Style AKTIF (Halaman Sekarang) */
+/* Ini otomatis dipakai kalau di HTML ada class="active" */
+.nav-btn.active {
+  background: linear-gradient(135deg, #4a90e2, #5ec9f3); /* Gradasi Biru */
+  color: #fff; /* Teks Putih */
+  box-shadow: 0 4px 14px rgba(74, 144, 226, 0.4);
+  transform: scale(1.05); /* Sedikit lebih besar biar menonjol */
+  pointer-events: none; /* Opsional: Biar gak bisa diklik lagi (kan udah di situ) */
+}
+
+/* --- TOMBOL MENU MOBILE --- */
+.menu-toggle {
+  display: none; 
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #0d5c97;
+}
+
+/* --- MENU MOBILE (DROPDOWN) --- */
+.mobile-menu {
+  position: absolute;
+  top: 80px; 
+  left: 50%;
+  transform: translateX(-50%) scale(0.95);
+  width: 90%;
+  max-width: 1200px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 99;
+}
+
+.mobile-menu.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) scale(1);
+}
+
+.mobile-menu .nav-btn {
+  width: 100%;
+  text-align: center;
+}
+
+/* --- ANIMASI & BACKGROUND (SAMA SEPERTI INDEX) --- */
+.ocean-bg, .light-rays, .bubbles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+#bubbles { z-index: 1; overflow: hidden; }
+
+/* Light Rays Animation */
+/* Light Rays Animation */
+.light-rays {
+  background: url("../img/light_rays.png") center top no-repeat;
+  background-size: cover;
+  opacity: 0.4; /* Naikkan sedikit opacity biar lebih kelihatan sinarnya */
+  mix-blend-mode: overlay;
+  z-index: 2;
+  
+  /* Ubah durasi jadi 12s biar gerakannya pelan tapi megah */
+  animation: sway 12s ease-in-out infinite alternate;
+  
+  /* PENTING: Ubah origin ke atas tengah, biar zoom-nya dari atas (sumber cahaya) */
+  transform-origin: top center;
+}
+
+/* Update Keyframes SWAY */
+@keyframes sway {
+  from {
+    /* translateY(-250px) -> Menarik posisi ke atas sejauh 250px 
+       scale(2.5) -> Tetap besar 
+    */
+    transform: translateX(-15%) translateY(-250px) scale(1.1) rotate(-8deg);
+  }
+  
+  to {
+    transform: translateX(15%) translateY(-250px) scale(1.1) rotate(8deg);
+  }
+}
+
+/* --- PANEL WRAPPER & ANIMATION (SAMA SEPERTI INDEX) --- */
+.float-wrapper {
+  position: relative;
+  width: min(90%, 420px);
+  z-index: 10;
+  /* Animasi Ngambang (Underwater Effect) */
+  animation: floating 4s ease-in-out infinite;
+}
+
+@keyframes floating {
+  0% { transform: translateY(-10px) rotate(1deg); }
+  50% { transform: translateY(10px) rotate(-1deg); }
+  100% { transform: translateY(-10px) rotate(1deg); }
+}
+
+/* --- PANEL UTAMA --- */
+.panel {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.15); /* Transparansi sama dgn Index */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 40px 30px;
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  text-align: center;
+  color: white;
+  
+  /* Animasi Muncul */
+  animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* TYPOGRAPHY */
+.badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.hero-title {
+  font-size: 1.6rem;
+  line-height: 1.2;
+  margin-bottom: 5px;
+  font-weight: 800;
+  text-shadow: 0 4px 15px rgba(255, 122, 122, 0.3);
+}
+
+.teacher-name {
+  font-size: 1.4rem;
+  color: #ffeeb3; /* Kuning soft */
+  margin-bottom: 15px;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.message {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 30px;
+}
+
+.message b { color: #ffeeb3; }
+.message i { color: #ffaddb; }
+
+/* --- TOMBOL GROUP --- */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px; 
+  margin-bottom: 25px;
+}
+/* Confetti Container */
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.confetti {
+  position: absolute;
+  top: -10px;
+  opacity: 0.9;
+  border-radius: 2px;
+  animation: confettiFall 3s linear forwards;
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+/* Tombol Gaskeun (Style sama persis dengan YesBtn Index) */
+.go {
+  flex: 2;
+  padding: 14px 20px;
+  font-size: 16px;
+  font-weight: 800;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  
+  /* Gradient Pink dari Index */
+  background: linear-gradient(135deg, #ff7eb3 0%, #ff758c 100%);
+  box-shadow: 0 8px 20px rgba(255, 118, 136, 0.4);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.go:hover {
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 0 15px 30px rgba(255, 118, 136, 0.6);
+}
+.go:active { transform: scale(0.95); }
+
+/* Tombol Party (Samping) */
+.btn-icon {
+  flex: 0 0 auto; 
+  width: 44px; 
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  
+  /* Biru Gradasi */
+  background: linear-gradient(135deg, #4a90e2, #5ec9f3);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(74, 144, 226, 0.4);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn-icon:hover {
+  transform: translateY(-2px) rotate(10deg);
+  box-shadow: 0 6px 20px rgba(74, 144, 226, 0.6);
+}
+.btn-icon:active { transform: scale(0.9); }
+
+/* Footer */
+.footer-sign {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: 15px;
+  margin-top: 10px;
+}
+
+/* --- SILUET CORAL --- */
+.coral-bg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 35vh; 
+  background: url("../img/background.png") bottom center no-repeat;
+  background-size: cover; 
+  z-index: 3; 
+  pointer-events: none; 
+  opacity: 0.8; 
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .nav-buttons { display: none; } 
+  .menu-toggle { display: block; }
+  
+  .topbar {
+    width: 90%;
+    top: 15px; /* Sedikit lebih mepet di HP */
+  }
+  
+  .coral-bg {
+    height: 25vh;
+    background-size: 150% auto; 
+  }
+}
+/* =========================================
+   1. RESET & BASE STYLES
+   ========================================= */
+* { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+  
+  /* TAMBAHKAN INI (ANTI BLOCK/HIGHLIGHT) */
+  -webkit-user-select: none; /* Safari/Chrome */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* IE/Edge */
+  user-select: none;         /* Standar */
+  
+  /* Mencegah gambar di-drag */
+  -webkit-user-drag: none;
+}
+
+/* PENTING: Kembalikan fitur select khusus untuk INPUT (Setting) */
+/* Biar user tetap bisa geser slider atau ketik kalau ada input box */
+input, textarea, select {
+  -webkit-user-select: auto !important;
+  user-select: auto !important;
+}
