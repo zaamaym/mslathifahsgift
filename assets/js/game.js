@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     showRays: true,
     showBubbles: true,
     showWaves: true,
-    showTrails: true,
+    showTrails: false,
     showBloom: false // <--- DEFAULT OFF
   };
 
@@ -300,7 +300,7 @@ function triggerConfetti() {
   /* ===== SPAWN FISH ===== */
   /* ===== TRAIL EFFECT HELPER ===== */
   function spawnTrailParticle(x, y, size) {
-    if (!SETTINGS.showTrails) return; // Cek Setting
+    if (!SETTINGS.showBubbles) return; // Cek Setting
     const t = document.createElement("div");
     t.className = "fish-trail";
     const s = size * (0.1 + Math.random() * 0.2); 
