@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>XII Fisher — Tangkap Ikan</title>
+  <link rel="icon" type="image/png" href="assets/img/logo.png" />
+  <link rel="stylesheet" href="assets/css/kenangan.css">
+</head>
+<body>
+  <div id="openerOverlay" class="glass-overlay">
+  <div class="glass-content">
+    <div class="finger-anim">👆🏻</div>
+    <h3>Sentuh Layar</h3>
+    <p>untuk masuk ke kenangan</p>
+  </div>
+</div>
+
+
+   <div class="ocean-bg"></div>
+ <div class="light-rays"></div>
+ <div class="coral-bg"></div>
+ <div class="bubbles" id="bubbles"></div>
+ <div class="currents-layer" id="currentsLayer"></div>
+ <div class="bg-overlay"></div>
+
+  <header class="topbar">
+    <div class="brand-mini">
+      <img 
+        src="assets/img/fisher.png"
+        alt="Fisher" 
+        class="brand-logo"
+        onmouseover="this.src='assets/img/fisher2.gif'" 
+        onmouseout="this.src='assets/img/fisher.png'"
+        onclick="location.href='home.html'"
+      >
+    </div>
+
+    <div style="display: flex; gap: 10px; align-items: center; margin-left: auto;">
+        
+        <button id="settingBtn" class="nav-btn blue" style="padding: 8px 12px; font-size: 20px; line-height: 1;" aria-label="Pengaturan">
+          ⚙️
+        </button>
+
+        <button id="menuToggle" class="menu-toggle" aria-label="Buka menu">☰</button>
+    </div>
+
+    <nav class="nav-buttons" style="margin-left: 10px;">
+      <button class="nav-btn" onclick="location.href='home.html'">Beranda</button>
+      <button class="nav-btn" onclick="location.href='game.html'">Game</button>
+      
+      <button class="nav-btn active" onclick="location.href='kenangan.html'">Kenangan</button>
+    </nav>
+
+  </header>
+    
+  <nav id="mobileMenu" class="mobile-menu">
+          <button class="nav-btn" onclick="location.href='home.html'">Beranda</button>
+      <button class="nav-btn" onclick="location.href='game.html'">Game</button>
+      
+      <button class="nav-btn active" onclick="location.href='kenangan.html'">Kenangan</button>
+  </nav>
+
+  <main class="play-area" id="playArea" aria-live="polite">
+    </main>
+  <div class="memories-wrapper">
+    <div class="memory-scroll" id="memoryScroll">
+      
+      <div class="spacer"></div>
+
+      <div class="memory-card active">
+        <div class="badge">Untuk bu Lathifah🫶🏻</div>
+      <div class="media-box custom-video">
+  <video 
+    src="assets/videos/ucapan.mp4" 
+    poster="assets/img/thumbnail_ucapan.jpg" loading="lazy"
+    playsinline 
+    loop
+  ></video>
+  
+  <div class="play-overlay">
+    <button class="glass-play-btn">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
+        <path d="M8 5v14l11-7z"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+        <div class="desc-box">
+          <h3> 💗</h3>
+          <p>Terima kasih atas bimbingan bu Lathifahh.<br><i>Semoga panjang umur dan berkah selaluu🎉🤲🏻</i></p>
+        </div>
+      </div>
+
+      <div class="memory-card">
+        <div class="badge">📸 First Time</div>
+        <div class="media-box">
+          <img src="assets/img/memory1.jpg" loading="lazy"alt="Foto Kelas" onerror="this.src='https://placehold.co/600x400/png?text=Foto+Kenangan'">
+        </div>
+        <div class="desc-box">
+          <h3>Momen pertama kali foto</h3>
+          <p>Foto setelah kebersihan kelas dan sesi wali kelass🤓.<br><b>15 Juli 2025</b></p>
+        </div>
+      </div>
+
+     <div class="memory-card">
+       <div class="badge">📸 Sharing Session w ur Inces</div>
+       <div class="media-box">
+         <img src="assets/img/memory2.jpg" loading="lazy"alt="Foto Kelas" onerror="this.src='https://placehold.co/600x400/png?text=Foto+Kenangan'">
+       </div>
+       <div class="desc-box">
+         <h3>Sharing Session</h3>
+         <p>Sharing session pertama? intinya pertama kali sharing session+foto🥹.<br><b>29 Juli 2025</b></p>
+       </div>
+     </div>
+ <div class="memory-card">
+        <div class="badge">📸 Foto sama Pak s🫣</div>
+        <div class="media-box">
+          <img src="assets/img/memory3.jpg" loading="lazy"alt="Foto Kelas" onerror="this.src='https://placehold.co/600x400/png?text=Foto+Kenangan'"style="object-position: 100% 80%;">
+        </div>
+        <div class="desc-box">
+          <h3>Foto Berlayout</h3>
+          <p>Mau bikin JJ pak Us ikut nimbrung😎.<br><b>23 September 2025</b></p>
+        </div>
+      </div>
+       <div class="memory-card">
+        <div class="badge">📸 Pembagian Rapor</div>
+        <div class="media-box">
+          <img src="assets/img/memory4.jpg" loading="lazy"alt="Foto Kelas" onerror="this.src='https://placehold.co/600x400/png?text=Foto+Kenangan'"style="object-position: 100% 60%;">
+        </div>
+        <div class="desc-box">
+          <h3>Ujian Semester Pertama😭😨</h3>
+          <p>Dapet donat dari bu Lathifah😋👍.<br><b>2 Oktober 2025</b></p>
+        </div>
+      </div>
+       <div class="memory-card">
+        <div class="badge">📸 Hari Santri</div>
+        <div class="media-box">
+          <img src="assets/img/memory5.jpg" loading="lazy"alt="Foto Kelas" onerror="this.src='https://placehold.co/600x400/png?text=Foto+Kenangan'">
+        </div>
+        <div class="desc-box">
+          <h3>MasyaAllah Tabarakallah</h3>
+          <p>Foto paling adem sejauh ini😇.<br><b>22 Oktober 2025</b></p>
+        </div>
+      </div>
+       <div class="memory-card">
+        <div class="badge">📸 Buat Konten</div>
+        <div class="media-box">
+          <img src="assets/img/memory6.jpg" loading="lazy"alt="Foto Kelas" onerror="this.src='https://placehold.co/600x400/png?text=Foto+Kenangan'">
+        </div>
+        <div class="desc-box">
+          <h3>😴</h3>
+          <p>Ceritanya tidur sekelas.<br><b>23 Oktober 2025</b></p>
+        </div>
+      </div>
+       <div class="memory-card">
+        <div class="badge">📸 After Konten</div>
+        <div class="media-box">
+          <img src="assets/img/memory7.jpg" loading="lazy"alt="Foto Kelas" onerror="this.src='https://placehold.co/600x400/png?text=Foto+Kenangan'">
+        </div>
+        <div class="desc-box">
+          <h3>Foto bareng entah yang kesekian kalinya🐋</h3>
+          <p>Jangan bilang kalau ada yang 'naik meja'🤫.<br><b>23 Oktober 2025</b></p>
+        </div>
+      </div>
+       <div class="memory-card">
+        <div class="badge">📸 Sumpah Pemuda</div>
+        <div class="media-box">
+          <img src="assets/img/memory8.jpg" loading="lazy"alt="Foto Kelas" onerror="this.src='https://placehold.co/600x400/png?text=Foto+Kenangan'">
+        </div>
+        <div class="desc-box">
+          <h3>Foto paling nasionalis🇮🇩</h3>
+          <p>Habis upacara ceritane.<br><b>28 Oktober 2025</b></p>
+        </div>
+      </div>
+       <div class="memory-card">
+        <div class="badge">📸 Pembelajaran</div>
+        <div class="media-box">
+          <img src="assets/img/memory9.jpg" loading="lazy"alt="Foto Kelas" onerror="this.src='https://placehold.co/600x400/png?text=Foto+Kenangan'"style="object-position: 100% 70%;">
+        </div>
+        <div class="desc-box">
+          <h3>Habis pelajarane bu Lath</h3>
+          <p>niatnya bikin JJ.<br><b>07 November 2025</b></p>
+        </div>
+      </div>
+       <div class="memory-card">
+        <div class="badge">📸 That moment🥹</div>
+        <div class="media-box">
+          <img src="assets/img/memory10.jpg" loading="lazy"alt="Foto Kelas" onerror="this.src='https://placehold.co/600x400/png?text=Foto+Kenangan'">
+        </div>
+        <div class="desc-box">
+          <h3>Cerita dari hati ke hati</h3>
+          <p>Momen kebersamaan setelah TKA...<br><b>10 November 2025</b></p>
+        </div>
+      </div>
+      <div class="memory-card">
+  <div class="badge">💌 Special Chapter</div>
+
+  <div class="desc-box">
+          <p>
+      <h1> "<b>Happy Birthday & Happy Teacher's Day, Bu!</b> 🎂💐<br><br></h1>
+      Terimakasih bu Lathifahh atas bimbingannya <b>hampir setengah tahun</b> ini di kelas XII Fisher🎣.
+      Mohon maaf ya buu kalau kami punya banyak sekali kesalahan🥹🙏"
+      </p>
+    <h3> 🎓</h3>
+    <p>
+      Tunggu kabar PTN kami nanti ya Bu!😁<br>
+      <span style="font-size: 0.85em; opacity: 0.8; font-style: italic;">
+        (from Fisher anak )
+      </span>
+    </p>
+  </div>
+</div>
+
+
+      <div class="spacer"></div>
+
+    </div>
+    
+    <div class="scroll-hint">Geser untuk melihat ➔</div>
+  </div>
+
+
+  <div id="settingOverlay" class="overlay" aria-hidden="true">
+    <div class="modal setting-modal">
+      <div class="inv-header">
+        <h3>Pengaturan</h3>
+        <button id="closeSetting" class="ghost">✕</button>
+      </div>
+      
+      <div class="setting-content">
+        <div class="setting-group">
+       <h4>🎚️ Audio Mixer</h4>
+          
+          <div class="control-row">
+            <label>Musik (Lagu)</label>
+            <input type="range" id="volMusic" min="0" max="1" step="0.1" value="0.5">
+          </div>
+
+          <div class="control-row">
+            <label>Ambience (Laut)</label>
+            <input type="range" id="volAmbience" min="0" max="1" step="0.1" value="0.5">
+          </div>
+          
+          <div class="control-row">
+            <label>Efek Suara (SFX)</label>
+            <input type="range" id="volSfx" min="0" max="1" step="0.1" value="0.8">
+          </div>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.2); margin: 15px 0;">
+
+        <div class="setting-group">
+          <h4>🎵 Music Player</h4>
+          
+          <div class="control-row" style="flex-direction: column; align-items: flex-start; gap: 8px;">
+            <label style="font-size: 0.85rem; opacity: 0.8;">Pilih Lagu:</label>
+<div class="custom-select-wrapper">
+  <input type="hidden" id="musicSelector" value="0"> 
+
+  <div class="custom-select-trigger">
+    <span id="triggerText">Monokrom</span>
+    <div class="arrow">▼</div>
+  </div>
+
+  <div class="custom-options">
+    <span class="custom-option selected" data-value="0">Monokrom</span>
+    <span class="custom-option" data-value="1">Kembali Pulang</span>
+    <span class="custom-option" data-value="2">Penjaga Hati</span>
+    <span class="custom-option" data-value="3">Tumbuh</span>
+  </div>
+</div>
+
+          </div>
+
+          <div class="control-row" style="margin-top: 10px;">
+            <label>Mode Putar</label>
+            <button id="toggleLoopBtn" class="secondary" style="font-size: 12px; padding: 6px 12px; width: 140px;">
+              🔄 Lanjut Playlist
+            </button>
+          </div>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.2); margin: 15px 0;">
+
+
+        <div class="setting-group">
+          <h4>🎨 Grafis / Video</h4>
+          
+          <div class="control-row">
+            <label>Show Rays (Cahaya)</label>
+            <label class="switch">
+              <input type="checkbox" id="showRays" checked>
+              <span class="slider-toggle"></span>
+            </label>
+          </div>
+
+          <div class="control-row">
+            <label>Show Bubble (Gelembung)</label>
+            <label class="switch">
+              <input type="checkbox" id="showBubbles" checked>
+              <span class="slider-toggle"></span>
+            </label>
+          </div>
+
+          <div class="control-row">
+            <label>Show Wave (Arus BG)</label>
+            <label class="switch">
+              <input type="checkbox" id="showWaves" checked>
+              <span class="slider-toggle"></span>
+            </label>
+          </div>
+
+          <div class="control-row">
+            <label>Show Trail (Jejak Ikan)</label>
+            <label class="switch">
+              <input type="checkbox" id="showTrails" checked>
+              <span class="slider-toggle"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+                <div class="control-row">
+            <label>Show Fish (Ikan)</label>
+            <label class="switch">
+              <input type="checkbox" id="showFish" checked>
+              <span class="slider-toggle"></span>
+            </label>
+          </div>
+
+          <div class="control-row">
+            <label>High Quality Blur</label>
+            <label class="switch">
+              <input type="checkbox" id="enableBlur" checked>
+              <span class="slider-toggle"></span>
+            </label>
+          </div>
+
+      
+      <div class="caught-actions">
+        <button id="saveSettingBtn" class="primary" style="width: 100%;">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/fishData.js"></script>
+  <script src="assets/js/kenangan.js"></script>
+</body>
+        </html>
+        
