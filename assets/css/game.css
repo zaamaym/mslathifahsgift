@@ -785,7 +785,7 @@ input, textarea, select {
   top: -10px;
   opacity: 0.9;
   border-radius: 2px;
-  animation: confettiFall 3s linear forwards;
+  animation: confettiFall 2s linear forwards;
 }
 
 @keyframes confettiFall {
@@ -793,7 +793,9 @@ input, textarea, select {
     transform: translateY(0) rotate(0deg);
     opacity: 1;
   }
-  
+  30%{
+    opacity: 0;
+  }
   100% {
     transform: translateY(100vh) rotate(720deg);
     opacity: 0;
