@@ -18,16 +18,16 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- GLOBAL SETTINGS STATE ---
   const SETTINGS = {
     musicVol: 0.5, // Volume Lagu
-    ambienceVol: 0.5, // Volume Laut (Dipisah)
+    ambienceVol: 0.2, // Volume Laut (Dipisah)
     sfxVol: 0.8, // Volume Efek
     loopMode: 'playlist', // 'one' = satu lagu, 'playlist' = lanjut terus
     currentTrackIdx: 0, // Lagu yang sedang aktif
     showRays: true,
     showBubbles: true,
     showWaves: true,
-    showTrails: true,
+    showTrails: false,
     showFish: true,
-    enableBlur: true
+    enableBlur: false
   };
   // DOM Elements
   const playArea = document.getElementById("playArea");
@@ -356,7 +356,7 @@ document.addEventListener('click', (e) => {
   /* ===== SPAWN FISH ===== */
   /* ===== TRAIL EFFECT HELPER ===== */
   function spawnTrailParticle(x, y, size) {
-    if (!SETTINGS.showTrails) return; // Cek Setting
+    if (!SETTINGS.showBubbles) return; // Cek Setting
     const t = document.createElement("div");
     t.className = "fish-trail";
     const s = size * (0.1 + Math.random() * 0.2); 
