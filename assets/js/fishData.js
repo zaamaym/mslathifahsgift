@@ -31,7 +31,7 @@ window.FISH_DATA = [
     id: 4, 
     student: "Daniswara Wisista Fawwaz Haryadita", 
     fishName: "Danisworo", 
-    type: "Rare", 
+    type: "Legendary", 
     skin: "data/fish/keong.png", 
     color: "#DAA520", 
     msg: "buru buru beli labubu\nbelinya di pasaribu\nselamat hari guru untuk Ibu\njuga selamat ulang tahun Ibu🫶🏻🫶🏻" 
@@ -67,7 +67,7 @@ window.FISH_DATA = [
     id: 8, 
     student: "Fadhil Auliya Al Hakim", 
     fishName: "Pidhil", 
-    type: "Epic", 
+    type: "Legendary", 
     skin: "data/fish/happyshark.png", 
     color: "#40E0D0", 
     msg: "Happy birthday Bu Latifah 🤗🤗 and Happy Teacher Day, semoga ibu selalu diberi kesehatan, selalu happy dan selalu diberi kebaikan.\nTerima kasih ibuu karena selalu sabar dalam mendidik dan membersamai kelas 12 Fisher" 
@@ -76,7 +76,7 @@ window.FISH_DATA = [
     id: 9, 
     student: "Fakhri Fakhruddin Hamid", 
     fishName: "FF Hamid", 
-    type: "Epic", 
+    type: "Legendary", 
     skin: "data/fish/shell.png", 
     color: "#FFA07A", 
     msg: "Terimakasih Bu latifaah maafkan saya kami selama menjadi murid murid ibu walaupun banyak kesalahan terima kasih telah mengajarkan kami, membimbing kami selama ini semoga kita bisa bertemu dilain kesempatan dalam keadaan yang terbaik" 
@@ -130,7 +130,7 @@ window.FISH_DATA = [
     id: 15, 
     student: "Mas Fei Er Purubaya Sriyono", 
     fishName: "Fei Er", 
-    type: "Rare", 
+    type: "Legendary", 
     skin: "data/fish/whale.png", 
     color: "#4169E1", 
     msg: "\"Suatu kehidupan, dalam perjalanan fana yang telah saya tempuh sejauh ini, yang hidup.\"" 
@@ -139,7 +139,7 @@ window.FISH_DATA = [
     id: 16, 
     student: "Muhammad Azzam", 
     fishName: "zaam", 
-    type: "Rare", 
+    type: "Legendary", 
     skin: "data/fish/fishbee.png", 
     color: "#FFD700", 
     msg: "<b>Happy B'Day and Teacher's Day!</b>\n<i>بَارَكَ اللَّهُ فِي عُمْرِكِ</i>\n\nTerima kasih Bu Lathifah atas segala bimbingan dan dedikasinya selama inii, mohon maaf ya bu, baru bisa memeriahkan ulang tahunnyasekarang, karena saya kira mempersiapkan hadiah ini bakal lebih cepat wkwk. Mohon maaf ya bu kalau selama ibu berinteraksi dengan saya, saya melakukan banyak sekali kesalahan baik kata maupun perbuatan. Panjang umur selalu ibuu, semoga diberkahi di setiap langkahnya. Aminn.\n\n tunggu kabar baik kami di PTN buu✊🏻🙏🔥" 
@@ -148,7 +148,7 @@ window.FISH_DATA = [
     id: 17, 
     student: "Muhammad Badar Agung", 
     fishName: "σ_ο", 
-    type: "Epic", 
+    type: "Legendary", 
     skin: "data/fish/coral.png", 
     color: "#FF4500", 
     msg: "Makasiiih Bu Lathifaah, jujur setahun ini seruu banget sama Bu Lathifah.\nWalaupun gak bisa bilang langsung hehe....Sehat dan sukses selalu ya Bu 🤩\n(Maaf kalau ada salah)😇" 
@@ -175,7 +175,7 @@ window.FISH_DATA = [
     id: 20, 
     student: "Muhammad Raihan Syahdan Putra", 
     fishName: "Hans", 
-    type: "Epic", 
+    type: "Legendary", 
     skin: "data/fish/crab.png", 
     color: "#FF7F50", 
     msg: "Selamat Hari Guru untuk bu Latifahh 🧡🔥✨.\nSemoga bu Latifah selalu diberikan keberkahan rezeki, kesehatan, dan dapat menebarkan kebaikan kepada orang banyak ⭐⭐" 
@@ -194,8 +194,8 @@ window.FISH_DATA = [
     student: "Qotrun Nada Salsabila", 
     fishName: "✦ Qotrun anak baik ✦", 
     type: "Legendary", 
-    skin: "data/fish/jellyfish.png", 
-    color: "#DA70D6", 
+    skin: "data/fish/starwhale.png", 
+    color: "#707BDA", 
     msg: "❀𖤣𖥧𖡼⊱✿⊰𖡼𖥧𖤣❀\nSelamat hari guru nasional untuk ibu guru tercantik dan Selamat Ulang Tahun untuk bu Latifah, inces kesayangan anak fisherrrrrrrr, yeyyyy🎉🎉🎉. Jujur dulu pas awal tau kalau ibu yang jadi wali kelas kaget, soalnya belum terlalu kenal sama inces, takut kalau ga sefrekuensi, pokoknya takut canggung dehhh. Tapi ternyata, setelah melewati beberapa bulan di kelas 12 bersama inces, bayangan ketakutan tadi seketika hilangg, soalnya inces selalu melakukan berbagai cara biar ga canggung sama kami.\nDoakan kami sukses di impian kami masing-masing ya ibuuuu\nqotrun dan anak fisher sayangggibuuuu🫰🏻🫰🏻🫶🏻🫶🏻🫶🏻💗💗💗🫂🫂🫂 ❀𖤣𖥧𖡼⊱✿⊰𖡼𖥧𖤣❀" 
   },
   { 
