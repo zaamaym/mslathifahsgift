@@ -451,7 +451,7 @@ function triggerConfetti() {
       // Trail Logic
       trailTimer++;
       if (trailTimer > 12) { 
-        if(SETTINGS.showTrails) {
+        if(SETTINGS.showBubbles) {
             const trailX = velocityX > 0 ? posX : posX + size;
             const trailY = posY + (size / 2); 
             spawnTrailParticle(trailX, trailY, size);
@@ -463,7 +463,7 @@ function triggerConfetti() {
         const tailY = posY + (size / 2);
         spawnSparkle(tailX, tailY, fishObj.color);
       }
-      if (SETTINGS.showTrails && Math.random() < 0.08) {
+      if (SETTINGS.showWaves && Math.random() < 0.08) {
          const tailX = velocityX > 0 ? posX : posX + size;
          const tailY = posY + (size / 2) + ((Math.random() - 0.5) * 8);
          spawnNaturalWake(tailX, tailY, velocityX);
