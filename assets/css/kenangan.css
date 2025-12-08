@@ -1034,10 +1034,8 @@ body.no-blur * {
 }
 
 /* Ganti efek kaca dengan warna solid transparan agar tetap terbaca */
-body.no-blur .modal,
-body.no-blur .glass-content, 
-body.no-blur .bag-btn,
-body.no-blur .glass-overlay {
+body.no-blur .modal, 
+body.no-blur .bag-btn{
   background: rgba(10, 30, 50, 0.95) !important; /* Biru Gelap Pekat */
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
