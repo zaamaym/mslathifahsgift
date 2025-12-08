@@ -138,11 +138,11 @@ window.FISH_DATA = [
   { 
     id: 16, 
     student: "Muhammad Azzam", 
-    fishName: "Azzam", 
+    fishName: "zaam", 
     type: "Rare", 
     skin: "data/fish/fishbee.png", 
     color: "#FFD700", 
-    msg: "<b>Happy B'Day and Teacher's Day!</b>/n<i>بَارَكَ اللَّهُ فِي عُمْرِكِ</i>/n/nTerima kasih Bu Lathifah atas segala bimbingan dan dedikasinya selama inii, mohon maaf ya bu, baru bisa memeriahkan ulang tahunnyasekarang, karena saya kira mempersiapkan hadiah ini bakal lebih cepat wkwk. Mohon maaf ya bu kalau selama ibu berinteraksi dengan saya, saya melakukan banyak sekali kesalahan baik kata maupun perbuatan. Panjang umur selalu ibuu, semoga diberkahi di setiap langkahnya. Aminn./n/n tunggu kabar baik kami di PTN buu✊🏻🙏🔥" 
+    msg: "<b>Happy B'Day and Teacher's Day!</b>\nn<i>بَارَكَ اللَّهُ فِي عُمْرِكِ</i>\n\nTerima kasih Bu Lathifah atas segala bimbingan dan dedikasinya selama inii, mohon maaf ya bu, baru bisa memeriahkan ulang tahunnyasekarang, karena saya kira mempersiapkan hadiah ini bakal lebih cepat wkwk. Mohon maaf ya bu kalau selama ibu berinteraksi dengan saya, saya melakukan banyak sekali kesalahan baik kata maupun perbuatan. Panjang umur selalu ibuu, semoga diberkahi di setiap langkahnya. Aminn./n/n tunggu kabar baik kami di PTN buu✊🏻🙏🔥" 
   },
   { 
     id: 17, 
