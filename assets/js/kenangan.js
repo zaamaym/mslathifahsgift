@@ -493,7 +493,7 @@ document.addEventListener('click', (e) => {
       // 1. Trail Logic (Bubble)
       trailTimer++;
       if (trailTimer > 12) { 
-        if(SETTINGS.showTrails) { // Cek Setting
+        if(SETTINGS.showBubbles) { // Cek Setting
             const trailX = velocityX > 0 ? posX : posX + size;
             const trailY = posY + (size / 2); 
             spawnTrailParticle(trailX, trailY, size);
@@ -509,7 +509,7 @@ document.addEventListener('click', (e) => {
       }
 
       // 3. Trail Logic (Natural Wake)
-      if (SETTINGS.showTrails && Math.random() < 0.08) { // Cek Setting
+      if (SETTINGS.showWaves && Math.random() < 0.08) { // Cek Setting
          const tailX = velocityX > 0 ? posX : posX + size;
          const tailY = posY + (size / 2) + ((Math.random() - 0.5) * 8);
          spawnNaturalWake(tailX, tailY, velocityX);
@@ -646,20 +646,28 @@ const checkBlur = document.getElementById("enableBlur"); // Baru
     });
   }
   
-  // 2. LOGIC ENABLE BLUR
+  // Fungsi Helper Toggle
+  function toggleBlur(isActive) {
+      if (isActive) {
+          document.body.classList.remove('no-blur'); // Nyalakan Blur
+      } else {
+          document.body.classList.add('no-blur'); // Matikan Blur (Performa Ringan)
+      }
+  }
+
+  // JALANKAN SEKALI SAAT LOAD (Agar default false langsung ngefek)
+  toggleBlur(SETTINGS.enableBlur);
+
   if (checkBlur) {
+    // Sinkronkan posisi tombol switch dengan setting
+    checkBlur.checked = SETTINGS.enableBlur;
+
     checkBlur.addEventListener("change", (e) => {
       SETTINGS.enableBlur = e.target.checked;
-      
-      if (SETTINGS.enableBlur) {
-        // Nyalakan Blur (Hapus class no-blur)
-        document.body.classList.remove('no-blur');
-      } else {
-        // Matikan Blur (Tambah class no-blur)
-        document.body.classList.add('no-blur');
-      }
+      toggleBlur(SETTINGS.enableBlur);
+      AudioMgr.playRand('ui');
     });
-  }
+           }
   // 2. Audio Handlers
   if (volMusicInput) {
   volMusicInput.addEventListener("input", (e) => {
