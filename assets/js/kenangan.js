@@ -823,51 +823,46 @@ if (toggleLoopBtn) {
   let isLocked = false; 
 
   if(scrollContainer) {
+    
+    // A. LOGIKA SCROLL MOUSE (WHEEL) - Yang tadi kita perbaiki
     scrollContainer.addEventListener("wheel", (evt) => {
-      // 1. Matikan scroll bawaan browser
-      evt.preventDefault(); 
-      
-      // 2. Kalau lagi proses geser, tolak perintah baru (Cooldown)
-      if (isLocked) return;
-
-      // 3. Tentukan arah: > 0 itu ke Bawah/Kanan, < 0 itu ke Atas/Kiri
-      const direction = evt.deltaY > 0 ? 1 : -1;
-      
-      // 4. Hitung lebar kartu + gap (perkiraan lebar per item)
-      // Ambil kartu pertama sebagai patokan ukuran
-      const cardWidth = cards[0].offsetWidth + 40; // 40 itu gap antar kartu (sesuaikan dgn CSS)
-
-      // 5. Hitung posisi sekarang ada di kartu nomor berapa
-      const currentScroll = scrollContainer.scrollLeft;
-      const currentIndex = Math.round(currentScroll / cardWidth);
-
-      // 6. Tentukan target kartu berikutnya
-      let targetIndex = currentIndex + direction;
-
-      // Jaga biar gak minus atau lebih dari jumlah kartu
-      if (targetIndex < 0) targetIndex = 0;
-      if (targetIndex >= cards.length) targetIndex = cards.length - 1;
-
-      // 7. Geser ke target!
-      // Kalau targetnya sama dengan sekarang (misal udah mentok), gak usah lock
-      if (targetIndex === currentIndex) return;
-
-      isLocked = true; // Kunci dulu
-
-      scrollContainer.scrollTo({
-        left: targetIndex * cardWidth,
-        behavior: 'smooth'
-      });
-      
-      // Panggil checkActive manual biar highlight-nya pas
-      checkActive();
-
-      // 8. Buka kunci setelah animasi selesai (estimasi 600ms)
-      setTimeout(() => {
-        isLocked = false;
-      }, 600);
-
+      if (evt.deltaY !== 0) {
+        evt.preventDefault();
+        scrollContainer.scrollLeft += evt.deltaY * 3;
+      }
     }, { passive: false });
+
+
+    // B. LOGIKA DRAG (KLIK TAHAN & GESER) - BARU!
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    scrollContainer.addEventListener('mousedown', (e) => {
+      isDown = true;
+      scrollContainer.classList.add('active'); // Optional: untuk styling
+      // Simpan posisi awal kursor dan posisi scroll saat ini
+      startX = e.pageX - scrollContainer.offsetLeft;
+      scrollLeft = scrollContainer.scrollLeft;
+    });
+
+    scrollContainer.addEventListener('mouseleave', () => {
+      isDown = false; // Kalau kursor keluar area, berhenti drag
+    });
+
+    scrollContainer.addEventListener('mouseup', () => {
+      isDown = false; // Kalau klik dilepas, berhenti drag
+    });
+
+    scrollContainer.addEventListener('mousemove', (e) => {
+      if (!isDown) return; // Kalau tidak sedang diklik, jangan lakukan apa-apa
+      
+      e.preventDefault(); // Mencegah seleksi teks saat nge-drag
+      
+      const x = e.pageX - scrollContainer.offsetLeft;
+      const walk = (x - startX) * 2; // Angka 2 adalah kecepatan geser (bisa diubah)
+      scrollContainer.scrollLeft = scrollLeft - walk;
+    });
   }
 
 
