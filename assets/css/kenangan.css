@@ -370,6 +370,37 @@ body {
   overflow-y: auto;
   padding: 4px;
 }
+/* ========================
+   CUSTOM SCROLLBAR SETTING
+   ======================== */
+
+/* 1. Supaya tipis di Firefox */
+.setting-content {
+  scrollbar-width: thin; 
+  scrollbar-color: rgba(255, 255, 255, 0.4) rgba(0, 0, 0, 0.1); 
+}
+
+/* 2. Style untuk Chrome, Edge, Safari */
+.setting-content::-webkit-scrollbar {
+  width: 6px; /* Lebar scrollbar tipis */
+}
+
+.setting-content::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1); /* Jalur track agak gelap transparan */
+  border-radius: 10px;
+  margin: 10px 0; /* Jarak atas bawah biar napas */
+}
+
+.setting-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3); /* Warna batang scroll (Putih Pudar) */
+  border-radius: 10px;
+  transition: background 0.3s;
+}
+
+/* Saat di-hover mouse, scrollbarnya jadi lebih terang */
+.setting-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.6); 
+}
 
 /* Custom Scrollbar */
 .inventory-panel, .inv-grid, .letter-msg { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.4) rgba(255,255,255,0.1); }
@@ -413,6 +444,9 @@ body {
   position: absolute; top: 0; left: 0; width: 100%; height: 100%;
   display: flex; align-items: center; justify-content: center;
   z-index: 20; /* Paling atas */
+    /* --- TAMBAHAN BARU --- */
+  padding-top: 80px; /* Memberi jarak dari atas supaya tidak nabrak topbar */
+  box-sizing: border-box; /* Agar padding tidak membuat layar overflow */
 }
 
 .memory-scroll {
@@ -442,10 +476,13 @@ body {
   flex: 0 0 auto; 
   scroll-snap-align: center;
   
-  /* UPDATE: Dibuat lebih lebar agar landscape terasa lega */
-  width: min(90vw, 600px); 
-  
-  /* UPDATE: Height dibuat auto agar menyesuaikan konten (tidak maksa kotak) */
+ width: min(90vw, 600px, 120vh);
+
+/* Jaga-jaga biar gak pernah lebih tinggi dari 80% layar */
+max-height: 80vh;
+
+/* Kalau ternyata teksnya panjaaaang banget, munculin scroll di dalam kartu aja */
+  overflow-y: auto;
   height: auto;
   min-height: min(50vh, 450px);
   
@@ -1283,4 +1320,16 @@ input, textarea, select {
   background: rgba(74, 144, 226, 0.3); /* Highlight biru */
   color: #ffeeb3;
   font-weight: 700;
+}
+.memory-scroll {
+  /* ... kode yang sudah ada biarkan saja ... */
+  
+  /* TAMBAHAN BARU: Style Kursor */
+  cursor: grab; /* Kursor bentuk tangan terbuka */
+  cursor: -webkit-grab;
+}
+
+.memory-scroll:active {
+  cursor: grabbing; /* Kursor bentuk tangan menggenggam saat diklik */
+  cursor: -webkit-grabbing;
 }
