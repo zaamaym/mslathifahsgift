@@ -801,6 +801,33 @@ input, textarea, select {
     opacity: 0;
   }
 }
+/* 1. Supaya tipis di Firefox */
+.setting-content {
+  scrollbar-width: thin; 
+  scrollbar-color: rgba(255, 255, 255, 0.4) rgba(0, 0, 0, 0.1); 
+}
+
+/* 2. Style untuk Chrome, Edge, Safari */
+.setting-content::-webkit-scrollbar {
+  width: 6px; /* Lebar scrollbar tipis */
+}
+
+.setting-content::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1); /* Jalur track agak gelap transparan */
+  border-radius: 10px;
+  margin: 10px 0; /* Jarak atas bawah biar napas */
+}
+
+.setting-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3); /* Warna batang scroll (Putih Pudar) */
+  border-radius: 10px;
+  transition: background 0.3s;
+}
+
+/* Saat di-hover mouse, scrollbarnya jadi lebih terang */
+.setting-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.6); 
+}
 /* =========================================
    BLOOM / GLOW EFFECT (High Performance Mode)
    ========================================= */
